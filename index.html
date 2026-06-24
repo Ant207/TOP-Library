@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Library</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <table >
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Pages</th>
+                <th>Read</th>
+            </tr>
+        </thead>
+        <tbody id="library-body">
+        </tbody>
+    </table>
+<button id="new-book">New Book</button>
+
+<dialog id="book-dialog">
+    <form id="book-form">
+        <label for="title">Title</label>
+        <input id="title" type="text">
+
+        <label for="author">Author</label>
+        <input id="author" type="text">
+
+        <label for="pages">Pages</label>
+        <input id="pages" type="text">
+
+        <label for="read">Read?</label>
+        <input id="read" type="checkbox">
+
+        <button type="submit">Add Book</button>
+        <button id="cancel-btn">Cancel</button>
+    </form>
+</dialog>
+    <script src="library.js"></script>
+</body>
+</html>
