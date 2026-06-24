@@ -12,12 +12,14 @@ function Book(title, author, pages, read) {
     this.id = crypto.randomUUID();
 }
 
+Book.prototype.toggleRead = function(){
+    this.read = !this.read;
+}
+
 function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read);
     myLibrary.push(book);
 }
-
-addBookToLibrary("The Hobbit", "Tolkien", 310, true);
 
 function displayLibrary() {
     const tbody = document.getElementById("library-body");
@@ -40,11 +42,41 @@ function displayLibrary() {
         const read = document.createElement('td');
         read.textContent = book.read ? 'Yes' : 'No';
 
+        const toggle = document.createElement('td');
+
+        const toggleBtn = document.createElement('button');
+        toggleBtn.textContent = book.read ? 'Read' : 'Unread';
+        toggleBtn.dataset.id = book.id;
+
+        toggleBtn.addEventListener('click', () => {
+            const id = toggleBtn.dataset.id;
+            const target = myLibrary.find(book => book.id === id);
+            target.toggleRead();
+            displayLibrary();
+        });
+
+        const remove = document.createElement('td');
+
+        const removeBtn = document.createElement('button');
+
+        removeBtn.textContent = 'Remove';
+        removeBtn.dataset.id = book.id;
+
+        removeBtn.addEventListener('click', () => {
+            const id =removeBtn.dataset.id;
+            const index = myLibrary.findIndex(book => book.id === id);
+            myLibrary.splice(index, 1);
+            displayLibrary();
+        })
+
         row.appendChild(title);
         row.appendChild(author);
         row.appendChild(pages);
         row.appendChild(read);
-
+        toggle.appendChild(toggleBtn);
+        row.appendChild(toggle);
+        remove.appendChild(removeBtn);
+        row.appendChild(remove);
         tbody.appendChild(row);
     }
 }
@@ -69,3 +101,13 @@ document.getElementById('cancel-btn').addEventListener('click', () => {
 newBookBtn.addEventListener('click', () => {
     dialog.showModal();
 });
+
+
+removeBtn.addEventListener('click', () => {
+    const id = removeBtn.dataset.id;
+
+    const index = myLibrary.findIndex(book => book.id === id);
+    myLibrary.splice(index, 1);
+    displayLibrary();
+});
+
