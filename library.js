@@ -4,16 +4,16 @@ const newBookBtn = document.getElementById('new-book');
 const myLibrary = [];
 const form = document.getElementById('book-form');
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.id = crypto.randomUUID();
-}
-
-Book.prototype.toggleRead = function(){
-    this.read = !this.read;
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        this.id = crypto.randomUUID();
+    }
+    toggleRead() { this.read = !this.read;
+    }
 }
 
 function addBookToLibrary(title, author, pages, read) {
